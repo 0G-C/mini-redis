@@ -1,0 +1,8 @@
+target/
+.idea/
+*.iml
+*.log
+logs/
+dump.rdb
+appendonly.aof
+.DS_Store
