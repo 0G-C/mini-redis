@@ -8,11 +8,11 @@
 
 ## 当前状态
 
-- **今日**:2026-07-05(周日)@ 居家 Windows
+- **今日**:2026-07-06(周一)@ 居家 Windows
 - **阶段**:W1 骨架 + RESP 协议(7/3-7/10)
-- **进行中**:等待用户确认昨日进展,即将进入 W1 任务
+- **进行中**:`RespEncoder`(亲手),骨架已建好,待实现 +SimpleString / $BulkString 编码
 - **卡壳**:无
-- **下一步**:W1 任务清单 → `RedisServer` Netty 启动 :6380 → 纸上画 EventLoopGroup 关系图 → `RespDecoder`(亲手) → `RespEncoder`(亲手)
+- **下一步**:完成 RespEncoder → 写 CommandHandler PING/ECHO → 挂上 Pipeline → redis-cli 端到端验证 PONG
 
 ---
 
