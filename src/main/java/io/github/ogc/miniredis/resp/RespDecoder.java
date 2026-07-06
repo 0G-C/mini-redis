@@ -10,7 +10,13 @@ import java.util.List;
 
 /**
  * RESP2 协议解码器。
- * 支持类型: +SimpleString / $BulkString / *Array
+ * <p>支持类型:{@code +SimpleString} / {@code $BulkString} / {@code *Array}(可嵌套)。
+ * <p>半包处理策略:
+ * <ol>
+ *   <li>顶层 {@link #decode} 在读第一个字节前 mark,helper 方法返回 false 表示数据不完整,顶层负责 reset。</li>
+ *   <li>Array 内元素也走同样约定:元素 helper 返回 false → Array 整体 reset,等下次一批数据一起重试。</li>
+ * </ol>
+ * <p>协议违规(未知类型、非法长度)直接抛 {@link RespProtocolException},不做半包处理。
  */
 public class RespDecoder extends ByteToMessageDecoder {
 
@@ -18,39 +24,50 @@ public class RespDecoder extends ByteToMessageDecoder {
     protected void decode(ChannelHandlerContext ctx, ByteBuf in, List<Object> out) {
         if (in.readableBytes() == 0) return;
 
-        byte firstByte = in.getByte(in.readerIndex());
+        in.markReaderIndex();
 
-        if (firstByte == '+') {
-            decodeSimpleString(in, out);
-        } else if (firstByte == '$') {
-            in.markReaderIndex();
-            if (!decodeBulkString(in, out)) {
-                in.resetReaderIndex();
-            }
-        } else if (firstByte == '*') {
-            decodeArray(in, out);
+        List<RespObject> parsed = new ArrayList<>(1);
+        if (!decodeOne(in, parsed)) {
+            in.resetReaderIndex();
+            return;
         }
+
+        out.addAll(parsed);
+    }
+
+    /**
+     * 解码一个 RESP 对象。
+     * @return true 完整读到一个对象 & 已经写入 out,false 数据不完整需 caller reset
+     * @throws RespProtocolException 未知类型或非法长度
+     */
+    private boolean decodeOne(ByteBuf in, List<RespObject> out) {
+        if (in.readableBytes() == 0) return false;
+
+        byte firstByte = in.getByte(in.readerIndex());
+        return switch (firstByte) {
+            case '+' -> decodeSimpleString(in, out);
+            case '$' -> decodeBulkString(in, out);
+            case '*' -> decodeArray(in, out);
+            default -> throw new RespProtocolException("unknown type marker: " + (char) firstByte);
+        };
     }
 
     // ==================== +SimpleString ====================
 
-    private void decodeSimpleString(ByteBuf in, List<Object> out) {
+    private boolean decodeSimpleString(ByteBuf in, List<RespObject> out) {
         int lineEnd = in.bytesBefore((byte) '\n');
-        if (lineEnd == -1) return;
+        if (lineEnd == -1) return false;
 
         in.readByte(); // 吃掉 '+'
         String content = in.readCharSequence(lineEnd - 2, StandardCharsets.UTF_8).toString();
         in.skipBytes(2); // 跳过 \r\n
         out.add(new RespSimpleString(content));
+        return true;
     }
 
     // ==================== $BulkString ====================
 
-    /**
-     * 解析一个 BulkString。调用前 caller 应做好 mark。
-     * @return true 解析成功，false 数据不完整需等下次
-     */
-    private boolean decodeBulkString(ByteBuf in, List<Object> out) {
+    private boolean decodeBulkString(ByteBuf in, List<RespObject> out) {
         int lineEnd = in.bytesBefore((byte) '\n');
         if (lineEnd == -1) return false;
 
@@ -58,14 +75,23 @@ public class RespDecoder extends ByteToMessageDecoder {
         String lengthStr = in.readCharSequence(lineEnd - 2, StandardCharsets.UTF_8).toString();
         in.skipBytes(2); // 跳过长度行的 \r\n
 
-        int contentLen = Integer.parseInt(lengthStr);
+        int contentLen;
+        try {
+            contentLen = Integer.parseInt(lengthStr);
+        } catch (NumberFormatException e) {
+            throw new RespProtocolException("invalid bulk string length: " + lengthStr);
+        }
+
         if (contentLen == -1) {
             out.add(RespBulkString.NULL);
             return true;
         }
+        if (contentLen < 0) {
+            throw new RespProtocolException("invalid bulk string length: " + contentLen);
+        }
 
         if (in.readableBytes() < contentLen + 2) {
-            return false; // 内容不完整，caller 会 reset
+            return false; // 内容不完整,caller reset
         }
 
         String content = in.readCharSequence(contentLen, StandardCharsets.UTF_8).toString();
@@ -76,38 +102,32 @@ public class RespDecoder extends ByteToMessageDecoder {
 
     // ==================== *Array ====================
 
-    private void decodeArray(ByteBuf in, List<Object> out) {
-        in.markReaderIndex();
-
+    private boolean decodeArray(ByteBuf in, List<RespObject> out) {
         int lineEnd = in.bytesBefore((byte) '\n');
-        if (lineEnd == -1) return;
+        if (lineEnd == -1) return false;
 
         in.readByte(); // 吃掉 '*'
         String countStr = in.readCharSequence(lineEnd - 2, StandardCharsets.UTF_8).toString();
         in.skipBytes(2); // 跳过 \r\n
 
-        int count = Integer.parseInt(countStr);
-        List<Object> elements = new ArrayList<>(count);
+        int count;
+        try {
+            count = Integer.parseInt(countStr);
+        } catch (NumberFormatException e) {
+            throw new RespProtocolException("invalid array count: " + countStr);
+        }
+        if (count < 0) {
+            throw new RespProtocolException("invalid array count: " + count);
+        }
 
+        List<RespObject> elements = new ArrayList<>(count);
         for (int i = 0; i < count; i++) {
-            if (in.readableBytes() == 0) {
-                in.resetReaderIndex();
-                return;
+            if (!decodeOne(in, elements)) {
+                return false; // 任一元素半包,整个 Array reset(由顶层 decode 负责)
             }
-
-            byte elementType = in.getByte(in.readerIndex());
-
-            if (elementType == '$') {
-                if (!decodeBulkString(in, elements)) {
-                    in.resetReaderIndex();
-                    return;
-                }
-            } else if (elementType == '+') {
-                decodeSimpleString(in, elements);
-            }
-            // 其他类型 (- : *) 后续补充
         }
 
         out.add(new RespArray(elements));
+        return true;
     }
 }
