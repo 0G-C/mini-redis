@@ -1,0 +1,26 @@
+src/test/java/io/github/ogc/miniredis/resp/RespDecoderTest.java
+  s_96a6c6a7cede51::t_4c1628bf61e52d 10,110-188
+src/main/java/io/github/ogc/miniredis/resp/RespEncoder.java
+  s_96a6c6a7cede51::t_439fea7bf493fe 10-11,13-16,19-21,23-50
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.28-trip",
+  "base_commit_sha": "cf381fcf6e29f38f7a77e58efd1e03e2093dd3f4",
+  "prompts": {},
+  "humans": {
+    "h_2a4fc97c4bee49": {
+      "author": "0G-C <218736830+0G-C@users.noreply.github.com>"
+    }
+  },
+  "sessions": {
+    "s_96a6c6a7cede51": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "49754bd7-2ec3-4ace-b606-ef83fb5c83fb",
+        "model": "arn:aws:bedrock:us-west-2:133197901387:application-inference-profile/ypvzpmevzxdl"
+      },
+      "human_author": "0G-C <218736830+0G-C@users.noreply.github.com>"
+    }
+  }
+}
