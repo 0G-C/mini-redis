@@ -1,0 +1,29 @@
+src/main/java/io/github/ogc/miniredis/RedisServer.java
+  s_96a6c6a7cede51::t_338859053e97d2 3-5,9,16-29,33-34,42,44,50-66,69,78-79
+src/main/java/io/github/ogc/miniredis/handler/CommandHandler.java
+  s_96a6c6a7cede51::t_ddf2f3b1b5fc91 24-26,29-65,67-72,77
+  s_96a6c6a7cede51::t_771409335280c1 1-23,27-28,66,73-76,78-82
+src/test/java/io/github/ogc/miniredis/handler/CommandHandlerTest.java
+  s_96a6c6a7cede51::t_20c3a1f90c39a7 1-85
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.28-trip",
+  "base_commit_sha": "06208b7741711c4e976670ac0b4e7a0370e018c9",
+  "prompts": {},
+  "humans": {
+    "h_2a4fc97c4bee49": {
+      "author": "0G-C <218736830+0G-C@users.noreply.github.com>"
+    }
+  },
+  "sessions": {
+    "s_96a6c6a7cede51": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "49754bd7-2ec3-4ace-b606-ef83fb5c83fb",
+        "model": "arn:aws:bedrock:us-west-2:133197901387:application-inference-profile/ypvzpmevzxdl"
+      },
+      "human_author": "0G-C <218736830+0G-C@users.noreply.github.com>"
+    }
+  }
+}
