@@ -1,0 +1,21 @@
+PROGRESS/INDEX.md
+  s_96a6c6a7cede51::t_3679efc3b4085f 11-13,15,22
+PROGRESS/W1.md
+  s_96a6c6a7cede51::t_4b1aef9fced227 82-121
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.28-trip",
+  "base_commit_sha": "6d0f4283f19194fa5c561b6e9868358b6f07290a",
+  "prompts": {},
+  "sessions": {
+    "s_96a6c6a7cede51": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "49754bd7-2ec3-4ace-b606-ef83fb5c83fb",
+        "model": "arn:aws:bedrock:us-west-2:133197901387:application-inference-profile/ypvzpmevzxdl"
+      },
+      "human_author": "0G-C <218736830+0G-C@users.noreply.github.com>"
+    }
+  }
+}
