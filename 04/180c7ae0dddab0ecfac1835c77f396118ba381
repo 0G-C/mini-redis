@@ -1,0 +1,20 @@
+src/main/java/io/github/ogc/miniredis/handler/CommandHandler.java
+  s_96a6c6a7cede51::t_1cb292d7ea95cd 11-12,14,22-24,31
+  s_96a6c6a7cede51::t_4c95024ebecb76 54
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.32-trip",
+  "base_commit_sha": "04180c7ae0dddab0ecfac1835c77f396118ba381",
+  "prompts": {},
+  "sessions": {
+    "s_96a6c6a7cede51": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "49754bd7-2ec3-4ace-b606-ef83fb5c83fb",
+        "model": "arn:aws:bedrock:us-west-2:133197901387:application-inference-profile/ypvzpmevzxdl"
+      },
+      "human_author": "0G-C <218736830+0G-C@users.noreply.github.com>"
+    }
+  }
+}
