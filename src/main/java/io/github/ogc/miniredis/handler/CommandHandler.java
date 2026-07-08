@@ -8,8 +8,10 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import lombok.extern.slf4j.Slf4j;
 
+import java.util.List;
+
 /**
- * 命令处理器 —— W1 版本,只处理 PING / ECHO。
+ * 命令处理器 —— W1 版本,只处理 PING / ECHO / COMMAND(空实现)。
  *
  * <p>Pipeline 上游:{@code RespDecoder} 已经把字节流解成 {@link RespObject}。
  * <p>Pipeline 下游:{@code RespEncoder} 会把返回的 {@link RespObject} 编回字节。
@@ -17,12 +19,16 @@ import lombok.extern.slf4j.Slf4j;
  * <p>redis-cli 发的命令一定是 {@link RespArray},第一个元素是命令名(BulkString)。
  * 例如 {@code PING} → {@code *1\r\n$4\r\nPING\r\n}
  *      {@code ECHO hello} → {@code *2\r\n$4\r\nECHO\r\n$5\r\nhello\r\n}
+ *
+ * <p>redis-cli 6+ 连接建立时会自动发 {@code COMMAND} 拉命令元数据做补全,
+ * 这里返回空数组让 cli 安静。W2 后可实现 COMMAND COUNT/DOCS/LIST/INFO。
  */
 @Slf4j
 public class CommandHandler extends SimpleChannelInboundHandler<RespObject> {
 
     private static final RespSimpleString PONG = new RespSimpleString("PONG");
     private static final RespSimpleString OK = new RespSimpleString("OK");
+    private static final RespArray EMPTY_ARRAY = new RespArray(List.of());
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, RespObject msg) {
@@ -45,6 +51,7 @@ public class CommandHandler extends SimpleChannelInboundHandler<RespObject> {
         RespObject response = switch (commandName) {
             case "PING" -> handlePing(array);
             case "ECHO" -> handleEcho(array);
+            case "COMMAND" -> EMPTY_ARRAY;  // redis-cli 补全用,W1 返回空
             default -> {
                 log.warn("unknown command: {}", commandName);
                 yield new RespSimpleString("ERR unknown command '" + commandName + "'");
