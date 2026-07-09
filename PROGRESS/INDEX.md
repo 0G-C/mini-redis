@@ -8,11 +8,11 @@
 
 ## 当前状态
 
-- **今日**:2026-07-08(周三)@ 居家 Windows
+- **今日**:2026-07-09(周四)@ 公司 Windows
 - **阶段**:W2 String + Hash + 命令分发(7/11-7/17),进行中(7/8 提前开工)
-- **进行中**:W2 命令分发框架已搭好(core + dispatcher + 类路径扫描),PING/ECHO/COMMAND 已迁移,19 测试全绿
+- **进行中**:RespInteger + GET/SET/DEL 已完成,端到端验证通过;剩余 INCR/DECR/APPEND/STRLEN/EXPIRE + Hash 5 命令
 - **卡壳**:无
-- **下一步**:写 String 命令 GET/SET/DEL(前 3 个亲手),再补 INCR/DECR/APPEND/STRLEN/EXPIRE
+- **下一步**:写 String 剩余 5 命令(INSERT/DECR/APPEND/STRLEN/EXPIRE),再补 Hash 5 命令
 
 ---
 
