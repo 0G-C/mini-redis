@@ -1,0 +1,26 @@
+PROGRESS/W2.md
+  s_96a6c6a7cede51::t_701fffecfc6704 15-52
+PROGRESS/INDEX.md
+  s_96a6c6a7cede51::t_45fa6e7e20bd7d 11,13,15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.33-trip",
+  "base_commit_sha": "22677cbd3f1625b5a300fc5f54fbe11efea40b16",
+  "prompts": {},
+  "humans": {
+    "h_2a4fc97c4bee49": {
+      "author": "0G-C <218736830+0G-C@users.noreply.github.com>"
+    }
+  },
+  "sessions": {
+    "s_96a6c6a7cede51": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "49754bd7-2ec3-4ace-b606-ef83fb5c83fb",
+        "model": "glm-5.2"
+      },
+      "human_author": "0G-C <218736830+0G-C@users.noreply.github.com>"
+    }
+  }
+}
