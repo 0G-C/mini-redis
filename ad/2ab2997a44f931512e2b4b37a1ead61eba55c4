@@ -1,0 +1,38 @@
+src/main/java/io/github/ogc/miniredis/resp/RespEncoder.java
+  s_96a6c6a7cede51::t_ce01053da96ef8 31-34
+src/main/java/io/github/ogc/miniredis/resp/RespDecoder.java
+  s_96a6c6a7cede51::t_13ed81b6c96fdd 51
+  s_96a6c6a7cede51::t_f20b0e26bb625d 69-88
+src/main/java/io/github/ogc/miniredis/resp/RespObject.java
+  s_96a6c6a7cede51::t_81e90b46647ae1 9
+src/main/java/io/github/ogc/miniredis/resp/RespInteger.java
+  s_96a6c6a7cede51::t_156e04571a3ff1 1-18
+src/main/java/io/github/ogc/miniredis/command/GetCommand.java
+  h_2a4fc97c4bee49 1-10,13-14,16-17,25-27
+  s_96a6c6a7cede51::t_6b8dad809152af 11-12,15,18-24
+src/main/java/io/github/ogc/miniredis/command/SetCommand.java
+  s_96a6c6a7cede51::t_cbe7081726357e 1-28
+src/main/java/io/github/ogc/miniredis/command/DelCommand.java
+  s_96a6c6a7cede51::t_3c25d398d5c3ab 1-32
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.33-trip",
+  "base_commit_sha": "ad2ab2997a44f931512e2b4b37a1ead61eba55c4",
+  "prompts": {},
+  "humans": {
+    "h_2a4fc97c4bee49": {
+      "author": "0G-C <218736830+0G-C@users.noreply.github.com>"
+    }
+  },
+  "sessions": {
+    "s_96a6c6a7cede51": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "49754bd7-2ec3-4ace-b606-ef83fb5c83fb",
+        "model": "glm-5.2"
+      },
+      "human_author": "0G-C <218736830+0G-C@users.noreply.github.com>"
+    }
+  }
+}
