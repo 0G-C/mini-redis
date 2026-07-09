@@ -6,5 +6,5 @@ package io.github.ogc.miniredis.resp;
  * "我用 sealed interface + pattern matching 让编码器/解码器的类型分派编译期可查"。
  */
 public sealed interface RespObject
-        permits RespSimpleString, RespBulkString, RespArray {
+        permits RespSimpleString, RespBulkString, RespArray, RespInteger {
 }

@@ -28,6 +28,10 @@ public class RespEncoder extends MessageToByteEncoder<RespObject> {
             out.writeByte('+');
             out.writeCharSequence(s.getValue(), StandardCharsets.UTF_8);
             out.writeBytes(CRLF);
+        } else if (msg instanceof RespInteger i) {
+            out.writeByte(':');
+            out.writeCharSequence(String.valueOf(i.getValue()), StandardCharsets.UTF_8);
+            out.writeBytes(CRLF);
         } else if (msg instanceof RespBulkString b) {
             if (b.isNull()) {
                 out.writeBytes(NULL_BULK);

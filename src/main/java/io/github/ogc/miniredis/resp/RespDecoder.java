@@ -48,6 +48,7 @@ public class RespDecoder extends ByteToMessageDecoder {
             case '+' -> decodeSimpleString(in, out);
             case '$' -> decodeBulkString(in, out);
             case '*' -> decodeArray(in, out);
+            case ':' -> decodeInteger(in, out);
             default -> throw new RespProtocolException("unknown type marker: " + (char) firstByte);
         };
     }
@@ -62,6 +63,26 @@ public class RespDecoder extends ByteToMessageDecoder {
         String content = in.readCharSequence(lineEnd - 2, StandardCharsets.UTF_8).toString();
         in.skipBytes(2); // 跳过 \r\n
         out.add(new RespSimpleString(content));
+        return true;
+    }
+
+    // ==================== :Integer ====================
+
+    private boolean decodeInteger(ByteBuf in, List<RespObject> out) {
+        int lineEnd = in.bytesBefore((byte) '\n');
+        if (lineEnd == -1) return false;
+
+        in.readByte(); // 吃掉 ':'
+        String valueStr = in.readCharSequence(lineEnd - 2, StandardCharsets.UTF_8).toString();
+        in.skipBytes(2); // 跳过 \r\n
+
+        long value;
+        try {
+            value = Long.parseLong(valueStr);
+        } catch (NumberFormatException e) {
+            throw new RespProtocolException("invalid integer: " + valueStr);
+        }
+        out.add(new RespInteger(value));
         return true;
     }
 
