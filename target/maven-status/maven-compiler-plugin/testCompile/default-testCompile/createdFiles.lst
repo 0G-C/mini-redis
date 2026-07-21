@@ -1,0 +1,4 @@
+io\github\ogc\miniredis\handler\CommandHandlerTest.class
+io\github\ogc\miniredis\command\StringCommandTest.class
+io\github\ogc\miniredis\resp\RespDecoderTest.class
+io\github\ogc\miniredis\command\HashCommandTest.class

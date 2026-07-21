@@ -8,11 +8,11 @@
 
 ## 当前状态
 
-- **今日**:2026-07-09(周四)@ 公司 Windows
-- **阶段**:W2 String + Hash + 命令分发(7/11-7/17),进行中(7/8 提前开工)
-- **进行中**:RespInteger + GET/SET/DEL 已完成,端到端验证通过;剩余 INCR/DECR/APPEND/STRLEN/EXPIRE + Hash 5 命令
+- **今日**:2026-07-21(周二)@ 公司 Windows
+- **阶段**:W2 String + Hash + 命令分发(7/11-7/17,延期至 7/21 完成)
+- **进行中**:W2 全部完成 —— 16 命令(APPEND/COMMAND/DECR/DEL/ECHO/EXPIRE/GET/HDEL/HGET/HGETALL/HLEN/HSET/INCR/PING/SET/STRLEN)注册,52 测试全绿
 - **卡壳**:无
-- **下一步**:写 String 剩余 5 命令(INSERT/DECR/APPEND/STRLEN/EXPIRE),再补 Hash 5 命令
+- **下一步**:W3 List + Set + 过期定期扫描
 
 ---
 
@@ -20,7 +20,7 @@
 
 - [x] **W0 环境搭建**(2026-07-03 完成)-- 详见 [W0.md](W0.md)
 - [x] **W1 骨架 + RESP 协议**(7/3-7/7 主线完成,提前 3 天)-- 见 [W1.md](W1.md);复盘:用户判断内容量不值得专门做,跳过
-- [ ] **W2 String + Hash + 命令分发**(7/11-7/17,7/8 提前开工)
+- [x] **W2 String + Hash + 命令分发**(7/11-7/17,延期至 7/21 完成)-- 见 [W2.md](W2.md)
 - [ ] **W3 List + Set + 过期机制**(7/18-7/24)
 - [ ] **W4 ZSet + SkipList + LRU 淘汰**(7/25-7/31)
 - [ ] **W5 AOF + 简化 RDB**(8/1-8/7)
