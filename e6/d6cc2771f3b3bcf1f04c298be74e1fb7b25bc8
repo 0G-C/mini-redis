@@ -1,0 +1,45 @@
+src/main/java/io/github/ogc/miniredis/command/HgetallCommand.java
+  s_96a6c6a7cede51::t_a3632e75394ae4 1-38,41-48
+  s_96a6c6a7cede51::t_91b956817e5a6f 39-40
+src/main/java/io/github/ogc/miniredis/command/AppendCommand.java
+  s_96a6c6a7cede51::t_d3f2069067cab9 1-43
+src/main/java/io/github/ogc/miniredis/command/IncrCommand.java
+  s_96a6c6a7cede51::t_0ec7d5d1c8a642 1-49
+src/main/java/io/github/ogc/miniredis/command/DecrCommand.java
+  s_96a6c6a7cede51::t_867fbdafa5f17f 1-46
+src/main/java/io/github/ogc/miniredis/command/HgetCommand.java
+  s_96a6c6a7cede51::t_4147d0926a0d6e 1-41
+src/main/java/io/github/ogc/miniredis/command/HsetCommand.java
+  s_96a6c6a7cede51::t_74619b97987293 1-45
+src/main/java/io/github/ogc/miniredis/command/HlenCommand.java
+  s_96a6c6a7cede51::t_b916c4c0419ba9 1-37
+src/main/java/io/github/ogc/miniredis/core/RedisDb.java
+  s_96a6c6a7cede51::t_5a4964007aeb37 34-41
+  s_96a6c6a7cede51::t_ffc2460b37d774 59-63
+src/main/java/io/github/ogc/miniredis/command/HdelCommand.java
+  s_96a6c6a7cede51::t_ef8c648847b8d5 1-44
+src/test/java/io/github/ogc/miniredis/command/HashCommandTest.java
+  s_96a6c6a7cede51::t_b2c3b51cb5681e 1-186
+src/main/java/io/github/ogc/miniredis/command/ExpireCommand.java
+  s_96a6c6a7cede51::t_7efb7396db404c 1-48
+src/test/java/io/github/ogc/miniredis/command/StringCommandTest.java
+  s_96a6c6a7cede51::t_5f7ad8d051f2cf 1-175
+src/main/java/io/github/ogc/miniredis/command/StrlenCommand.java
+  s_96a6c6a7cede51::t_7d49bf749617f9 1-36
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.35-trip",
+  "base_commit_sha": "e6d6cc2771f3b3bcf1f04c298be74e1fb7b25bc8",
+  "prompts": {},
+  "sessions": {
+    "s_96a6c6a7cede51": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "49754bd7-2ec3-4ace-b606-ef83fb5c83fb",
+        "model": "glm-5.2"
+      },
+      "human_author": "0G-C <218736830+0G-C@users.noreply.github.com>"
+    }
+  }
+}
