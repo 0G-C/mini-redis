@@ -31,7 +31,14 @@ public class RedisDb {
     }
 
     public RedisObject get(String key) {
-        return dict.get(key);
+        RedisObject obj = dict.get(key);
+        if (obj != null && obj.isExpired()) {
+            // 惰性删除:访问到过期 key 时顺手删掉。
+            // remove(key, obj) 用引用比较条件删除,不会误删并发替换后的新值。
+            dict.remove(key, obj);
+            return null;
+        }
+        return obj;
     }
 
     public void put(String key, RedisObject value) {
@@ -48,5 +55,10 @@ public class RedisDb {
 
     public int size() {
         return dict.size();
+    }
+
+    /** 清空所有键值(仅测试用)。 */
+    public void clear() {
+        dict.clear();
     }
 }
