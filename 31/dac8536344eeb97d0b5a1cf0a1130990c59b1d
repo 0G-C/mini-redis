@@ -1,0 +1,24 @@
+PROGRESS/W2.md
+  s_96a6c6a7cede51::t_7e7e41626e54e9 54-91
+logs/mini-redis.log
+  s_96a6c6a7cede51::t_59c29251c386c5 1-49
+PROGRESS/INDEX.md
+  s_96a6c6a7cede51::t_f884e5f72c7633 23
+  s_96a6c6a7cede51::t_73a6a21642de91 11-13,15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.35-trip",
+  "base_commit_sha": "31dac8536344eeb97d0b5a1cf0a1130990c59b1d",
+  "prompts": {},
+  "sessions": {
+    "s_96a6c6a7cede51": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "49754bd7-2ec3-4ace-b606-ef83fb5c83fb",
+        "model": "glm-5.2"
+      },
+      "human_author": "0G-C <218736830+0G-C@users.noreply.github.com>"
+    }
+  }
+}
