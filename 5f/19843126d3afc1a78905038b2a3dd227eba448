@@ -1,0 +1,21 @@
+PROGRESS/INDEX.md
+  s_96a6c6a7cede51::t_100f06d6cc18d7 11-13,15
+PROGRESS/W3.md
+  s_96a6c6a7cede51::t_fd00de836c415a 1-47
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.38-trip",
+  "base_commit_sha": "5f19843126d3afc1a78905038b2a3dd227eba448",
+  "prompts": {},
+  "sessions": {
+    "s_96a6c6a7cede51": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "49754bd7-2ec3-4ace-b606-ef83fb5c83fb",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "0G-C <218736830+0G-C@users.noreply.github.com>"
+    }
+  }
+}
