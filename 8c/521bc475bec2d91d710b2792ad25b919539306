@@ -1,0 +1,46 @@
+src/main/java/io/github/ogc/miniredis/command/LpopCommand.java
+  s_96a6c6a7cede51::t_a43e36a53f99bc 1-39
+src/main/java/io/github/ogc/miniredis/command/RpopCommand.java
+  s_96a6c6a7cede51::t_f4f52d88ff313b 1-39
+src/main/java/io/github/ogc/miniredis/command/LlenCommand.java
+  s_96a6c6a7cede51::t_89d853b71e8e0c 1-37
+src/main/java/io/github/ogc/miniredis/command/LrangeCommand.java
+  s_96a6c6a7cede51::t_657f1278d2a64c 1-72
+src/main/java/io/github/ogc/miniredis/command/SmembersCommand.java
+  s_96a6c6a7cede51::t_966425e7c5ddc1 1-43
+src/test/java/io/github/ogc/miniredis/command/ListCommandTest.java
+  s_96a6c6a7cede51::t_1def867a1088a3 1-215
+src/main/java/io/github/ogc/miniredis/command/LpushCommand.java
+  s_96a6c6a7cede51::t_ffd603f498fa65 1-45
+src/test/java/io/github/ogc/miniredis/command/SetCommandTest.java
+  s_96a6c6a7cede51::t_26271ba8439526 1-144
+src/main/java/io/github/ogc/miniredis/command/SaddCommand.java
+  s_96a6c6a7cede51::t_81268c6a6dfd69 1-46
+src/main/java/io/github/ogc/miniredis/command/SremCommand.java
+  s_96a6c6a7cede51::t_ed778a36a5d1d5 1-43
+src/main/java/io/github/ogc/miniredis/command/RpushCommand.java
+  s_96a6c6a7cede51::t_8fdbb70f443170 1-44
+src/main/java/io/github/ogc/miniredis/core/object/RedisSet.java
+  s_96a6c6a7cede51::t_b389c71fe20655 1-15
+src/main/java/io/github/ogc/miniredis/command/SismemberCommand.java
+  s_96a6c6a7cede51::t_7acd859a724c54 1-39
+src/main/java/io/github/ogc/miniredis/core/object/RedisList.java
+  s_96a6c6a7cede51::t_631564157eb515 2-15
+  s_96a6c6a7cede51::t_be21e86451a17d 1
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.4.38-trip",
+  "base_commit_sha": "8c521bc475bec2d91d710b2792ad25b919539306",
+  "prompts": {},
+  "sessions": {
+    "s_96a6c6a7cede51": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "49754bd7-2ec3-4ace-b606-ef83fb5c83fb",
+        "model": "deepseek-v4-pro"
+      },
+      "human_author": "0G-C <218736830+0G-C@users.noreply.github.com>"
+    }
+  }
+}
